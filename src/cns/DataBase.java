@@ -40,9 +40,9 @@ public class DataBase {
 
     String type = "mysql";
     String ip = "localhost";
-    String database = "cns";
+    String database = "cns_prod";
     String user = "root";
-    String mdp = "toor";
+    String mdp = "root";
     Connection connexion = null;
     
     public DataBase() 

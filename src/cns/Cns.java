@@ -5,6 +5,9 @@
  */
 package cns;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author john
@@ -16,9 +19,21 @@ public class Cns {
      */
     public static void main(String[] args) {
         
-        UserList users = new UserList();
+        //UserList users = new UserList();
+        //users.afficher();
         
-        users.afficher();
+        ///////////////////////////////////////////////////////////////////////
+        //  LA PARTIE USERADD EST FONCTIONNELLE !!!                          //
+        ///////////////////////////////////////////////////////////////////////
+        
+        //UserAdd userAdd = new UserAdd();
+        //userAdd.apprenti("test", "test", "test", 1, 10);
+        //ArrayList<Integer> sections = new ArrayList();
+        //sections.add(1);
+        //sections.add(2);
+        //userAdd.formateur("test", "test", "testo",sections);
+        //userAdd.responsable("test", "test", "testo", sections);
+        
     }
     
 }
