@@ -11,5 +11,49 @@ package cns;
  */
 public class UserAdd {
     
-    // Fenetre ajout utilisateur
+    private String nom, prenom, mdp, typeUser;
+    private DataBase db;
+    public UserAdd(String nom, String prenom, String mdp, String typeUser){
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mdp = mdp;
+        this.typeUser = typeUser;
+        this.db = new DataBase();
+        this.addUser();
+    }
+    private void addUser(){
+        switch (typeUser)
+        {
+            case "Apprenti":
+            this.apprenti();
+            break;  
+            
+            case "Formateur":
+            this.formateur();
+            break;
+            
+            case "Responsable":
+            this.responsable();
+            break;
+            
+            case "Tuteur":
+            this.tuteur();
+            break;
+            
+            default:
+            /*Action*/;             
+        }
+    }
+    private void apprenti(){
+        
+    }
+    private void formateur(){
+        
+    }
+    private void responsable(){
+        
+    }
+    private void tuteur(){
+        
+    }
 }
