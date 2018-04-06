@@ -27,33 +27,33 @@ public class UserDelete {
         
         
     }
-    public void confirm() throws Throwable{
+    public boolean confirm() throws Throwable{
         switch (this.typeUserC)
         {
             case "apprenti":
                 if(this.alreadyInDb()){
                     this.user();
                 }
-                break;  
+                return true;
             case "formateur":
                 if(this.alreadyInDb()){
                     this.userSections();
                     this.user();
                 }
-                break;
+                return true;
             case "responsable":
                 if(this.alreadyInDb()){
                     this.userSections();
                     this.user();
                 }
-                break;
+                return true;
             case "tuteur":
                 if(this.alreadyInDb()){
                     this.user();
                 }
-                break;
+                return true;
             default:
-                this.finalize();             
+                return false;             
         }
     }
     private void user(){
@@ -73,17 +73,22 @@ public class UserDelete {
                        + "WHERE id_"+this.typeUserC+" = "+this.id+"";
         this.db.edit(request);
     }
-    private boolean alreadyInDb() throws SQLException{
+    private boolean alreadyInDb(){
         
         String request = "SELECT id_utilisateur FROM utilisateurs "
                        + "WHERE id_utilisateur = "+this.id+"";
         ResultSet result = this.db.select(request);
         
-        return result.next();
+        try 
+        {
+            return result.next();
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return false;
     }
     
-    public void annuler() throws Throwable{
-        
-        super.finalize();
-    }
+    
 }

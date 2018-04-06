@@ -107,9 +107,6 @@ public class UserAdd {
         }
         return false;
     }
-    public void annuler() throws Throwable{
-        
-        super.finalize();
-    }
+    
 }
 

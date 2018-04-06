@@ -93,9 +93,15 @@ public class UserUpdate {
                        + "WHERE id_utilisateur = "+this.id+"";
         ResultSet result = this.db.select(request);
         
-        return result.next();
+        try 
+        {
+            return result.next();
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return false;
     }
-    public void annuler() throws Throwable{
-        super.finalize();
-    }
+    
 }
