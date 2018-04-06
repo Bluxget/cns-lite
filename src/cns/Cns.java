@@ -26,12 +26,12 @@ public class Cns {
         //  LA PARTIE USERADD EST FONCTIONNELLE !!!                          //
         ///////////////////////////////////////////////////////////////////////
         
-        //UserAdd userAdd = new UserAdd();
+        UserAdd userAdd = new UserAdd();
         //userAdd.apprenti("test", "test", "test", 1, 10);
-        //ArrayList<Integer> sections = new ArrayList();
-        //sections.add(1);
-        //sections.add(2);
-        //userAdd.formateur("test", "test", "testo",sections);
+        ArrayList<Integer> sections = new ArrayList();
+        sections.add(1);
+        sections.add(2);
+        userAdd.formateur("test", "test", "testo",sections);
         //userAdd.responsable("test", "test", "testo", sections);
         
     }

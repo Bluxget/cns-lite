@@ -14,9 +14,12 @@ import javax.swing.JButton;
 public class UserDelete {
     
     private JButton oui, non;
-    
-    public UserDelete(int id_user)
+    protected DataBase db = new DataBase();
+    public UserDelete(int id_user, String typeUser)
     {
+        
+    }
+    private void typeUser(String typeUser){
         
     }
 }

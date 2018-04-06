@@ -6,6 +6,8 @@
 package cns;
 
 import java.awt.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -21,31 +23,37 @@ public class UserAdd {
     
     public void apprenti(String nom, String prenom, String mdp, int idSection, int idTuteur){
         
-        this.user(nom, prenom, mdp, "apprentis");
-        String request = "INSERT INTO `apprentis` (`id_utilisateur`, `id_section`, `id_tuteur`) "
-                       + "SELECT utilisateurs.id_utilisateur, sections.id_section, tuteurs.id_utilisateur "
-                       + "FROM utilisateurs, sections, tuteurs "
-                       + "WHERE utilisateurs.nom = '"+nom+"' "
-                       + "AND utilisateurs.prenom = '"+prenom+"' "
-                       + "AND utilisateurs.mot_de_passe = '"+mdp+"' "
-                       + "AND sections.id_section = "+idSection+" "
-                       + "AND tuteurs.id_utilisateur = "+idTuteur+"";
-        this.db.edit(request);
+        if(!this.alreadyInDb(nom, prenom, mdp)){
+            
+            this.user(nom, prenom, mdp, "apprentis");
+            String request = "INSERT INTO `apprentis` (`id_utilisateur`, `id_section`, `id_tuteur`) "
+                           + "SELECT utilisateurs.id_utilisateur, sections.id_section, tuteurs.id_utilisateur "
+                           + "FROM utilisateurs, sections, tuteurs "
+                           + "WHERE utilisateurs.nom = '"+nom+"' "
+                           + "AND utilisateurs.prenom = '"+prenom+"' "
+                           + "AND utilisateurs.mot_de_passe = '"+mdp+"' "
+                           + "AND sections.id_section = "+idSection+" "
+                           + "AND tuteurs.id_utilisateur = "+idTuteur+"";
+            this.db.edit(request);
+        }
     }
     
     public void formateur(String nom, String prenom, String mdp, ArrayList<Integer> arraySections){
-        
-        this.user(nom, prenom, mdp, "formateurs");
-        this.userSections(nom, prenom, mdp, "formateurs", arraySections); 
+        if(!this.alreadyInDb(nom, prenom, mdp)){
+            this.user(nom, prenom, mdp, "formateurs");
+            this.userSections(nom, prenom, mdp, "formateurs", "formateur", arraySections);
+        }
     }
     public void responsable(String nom, String prenom, String mdp, ArrayList<Integer> arraySections){
-        
-        this.user(nom, prenom, mdp, "responsables");
-        this.userSections(nom, prenom, mdp, "responsables", arraySections);
-        
+        if(!this.alreadyInDb(nom, prenom, mdp)){
+            this.user(nom, prenom, mdp, "responsables");
+            this.userSections(nom, prenom, mdp, "responsables", "responsable", arraySections);
+        }
     }
     public void tuteur(String nom, String prenom, String mdp){
-        this.user(nom, prenom, mdp, "tuteurs");
+        if(!this.alreadyInDb(nom, prenom, mdp)){
+            this.user(nom, prenom, mdp, "tuteurs");
+        }
     }
     private void user(String nom, String prenom, String mdp, String type){
         
@@ -63,14 +71,14 @@ public class UserAdd {
             this.db.edit(request);
         }
     }
-    private void userSections(String nom, String prenom, String mdp, String type, ArrayList<Integer> arraySections){
+    private void userSections(String nom, String prenom, String mdp, String typeT, String typeC, ArrayList<Integer> arraySections){
             
         if (arraySections.size()>0){
             
             for (int section:arraySections)
             {
 
-                String request = "INSERT INTO "+type+"_sections (id_responsable, id_section) "
+                String request = "INSERT INTO "+typeT+"_sections (id_"+typeC+", id_section) "
                         + "SELECT utilisateurs.id_utilisateur, sections.id_section "
                         + "FROM utilisateurs, sections "
                         + "WHERE utilisateurs.nom = '"+nom+"' "
@@ -80,6 +88,24 @@ public class UserAdd {
                 this.db.edit(request);
             }
         }   
+    }
+    private boolean alreadyInDb(String nom, String prenom, String mdp){
+        
+        String request = "SELECT id_utilisateur FROM utilisateurs "
+                        + "WHERE nom = '"+nom+"' "
+                        + "AND prenom = '"+prenom+"' "
+                        + "AND mot_de_passe = '"+mdp+"'";
+        ResultSet result = this.db.select(request);
+        
+        try 
+        {
+            return result.next();
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return false;
     }
 }
 
