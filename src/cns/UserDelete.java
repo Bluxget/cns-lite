@@ -81,8 +81,9 @@ public class UserDelete {
         
         return result.next();
     }
-    @Override
-    public void finalize() throws Throwable{
+    
+    public void annuler() throws Throwable{
+        
         super.finalize();
     }
 }
