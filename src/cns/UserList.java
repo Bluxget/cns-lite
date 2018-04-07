@@ -211,4 +211,39 @@ public class UserList extends JFrame implements ActionListener {
         }
         return "";
     }
+    public String getUserPrenom(int idUtilisateur){
+        String request = "SELECT prenom FROM utilisateurs "
+                       + "WHERE id_utilisateur = '"+idUtilisateur+"'";
+        ResultSet result = this.db.select(request);
+        try 
+        {
+            while(result.next()) 
+            {
+                return result.getString("prenom");
+            }
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return "";
+    }
+    public int getUserId (String nom, String prenom){
+        String request = "SELECT id_utilisateur FROM utilisateurs "
+                       + "WHERE nom = '"+nom+"' "
+                       + "AND prenom = '"+prenom+"'";
+        ResultSet result = this.db.select(request);
+        try 
+        {
+            while(result.next()) 
+            {
+                return result.getInt("id_utilisateur");
+            }
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return 0;
+    }
 }

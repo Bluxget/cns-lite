@@ -45,6 +45,9 @@ public class Cns {
         //usrDlt.confirm();
         TestAdd testadd = new TestAdd();
         testadd.execute();
+        /*String test = "testA:testB";
+        String[] arr = test.split(":");
+        for(String str:arr){System.out.println(str);}*/
     }
     
 }
