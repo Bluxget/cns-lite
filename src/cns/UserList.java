@@ -173,4 +173,42 @@ public class UserList extends JFrame implements ActionListener {
         }
         return 0;
     }
+    /*public ArrayList<String> getListeNomTuteurs(){
+        ArrayList<String> listeNomTuteurs = new ArrayList();
+        
+    }*/
+    public ArrayList<Integer> getListeIdtuteurs(){
+        ArrayList<Integer> listeIdTuteurs = new ArrayList();
+        String request = "SELECT * FROM `tuteurs`";
+        ResultSet result = this.db.select(request);
+        try 
+        {
+            while(result.next()) 
+            {
+                listeIdTuteurs.add(result.getInt("id_utilisateur"));
+            }
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return listeIdTuteurs;
+    }
+    public String getUserNom(int idUtilisateur){
+        String request = "SELECT nom FROM utilisateurs "
+                       + "WHERE id_utilisateur = '"+idUtilisateur+"'";
+        ResultSet result = this.db.select(request);
+        try 
+        {
+            while(result.next()) 
+            {
+                return result.getString("nom");
+            }
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return "";
+    }
 }
