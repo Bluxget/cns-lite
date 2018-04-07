@@ -5,6 +5,10 @@
  */
 package cns;
 
+import java.awt.List;
+import java.util.ArrayList;
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author Matthias
@@ -37,6 +41,8 @@ public class TestAdd extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         valider = new javax.swing.JButton();
         annuler = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        sectionsList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ajout utilisateur");
@@ -75,6 +81,14 @@ public class TestAdd extends javax.swing.JFrame {
 
         annuler.setText("annuler");
 
+        UserList userList = new UserList();
+        ArrayList<String> listeSections = userList.getListeNomSections();
+        sectionsList.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return listeSections.size(); }
+            public String getElementAt(int i) { return listeSections.get(i); }
+        });
+        jScrollPane1.setViewportView(sectionsList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +116,9 @@ public class TestAdd extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(annuler)
                         .addGap(119, 119, 119)))
-                .addComponent(typeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(typeUser, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(178, 178, 178))
         );
         layout.setVerticalGroup(
@@ -120,14 +136,17 @@ public class TestAdd extends javax.swing.JFrame {
                     .addComponent(userPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(valider)
-                    .addComponent(annuler))
-                .addContainerGap(520, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(valider)
+                            .addComponent(annuler)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,6 +166,8 @@ public class TestAdd extends javax.swing.JFrame {
         //System.out.println(userNom.getText());
         //System.out.println(userPrenom.getText());
         //System.out.println(userMdp.getText());
+        ArrayList<String> list = (ArrayList<String>) sectionsList.getSelectedValuesList();
+        
         switch (typeUser.getSelectedItem())
         {
             case "apprenti":
@@ -156,6 +177,7 @@ public class TestAdd extends javax.swing.JFrame {
                 
                 break;
             case "responsable":
+                
                 
                 break;
             case "tuteur":
@@ -209,6 +231,8 @@ public class TestAdd extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> sectionsList;
     private java.awt.Choice typeUser;
     private javax.swing.JPasswordField userMdp;
     private javax.swing.JTextField userNom;

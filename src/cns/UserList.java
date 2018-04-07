@@ -8,6 +8,9 @@ package cns;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,8 +27,9 @@ public class UserList extends JFrame implements ActionListener {
 
     private JTable table;
     private JButton ajouter, supprimer;
+    protected DataBase db = new DataBase();
  
-    public UserList() {
+    /*public UserList() {
         super();
  
         this.setTitle("CNS - Administration");
@@ -59,6 +63,9 @@ public class UserList extends JFrame implements ActionListener {
         getContentPane().add(boutons, BorderLayout.SOUTH);
  
         pack();
+    }*/
+    public UserList(){
+        
     }
     
     public JTable getTable()
@@ -97,5 +104,73 @@ public class UserList extends JFrame implements ActionListener {
         {
             System.out.println("Erreur");
         }
+    }
+    public ArrayList<Integer> getListeIdSections(){
+        ArrayList<Integer> listeSections = new ArrayList();
+        String request = "SELECT id_section FROM `sections`";
+        ResultSet result = this.db.select(request);
+        try 
+        {
+            while(result.next()) 
+            {
+                listeSections.add(result.getInt("id_section"));
+            }
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return listeSections;
+    }
+    public ArrayList<String> getListeNomSections(){
+        ArrayList<String> listeSections = new ArrayList();
+        String request = "SELECT nom FROM `sections`";
+        ResultSet result = this.db.select(request);
+        try 
+        {
+            while(result.next()) 
+            {
+                listeSections.add(result.getString("nom"));
+            }
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return listeSections;
+    }
+    public String getSectionName(int id_section){
+        String request = "SELECT nom FROM `sections` "
+                           + "WHERE id_section = '"+id_section+"'";
+        ResultSet result = this.db.select(request);
+        try 
+        {
+            while(result.next()) 
+            {
+                return result.getString("nom");
+            }
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return "";
+    }
+    public int getSectionId(String sectionName){
+        String request = "SELECT id_section FROM `sections` "
+                       + "WHERE nom = '"+sectionName+"'";
+        ResultSet result = this.db.select(request);
+        try 
+        {
+            while(result.next()) 
+            {
+                return result.getInt("id_section");
+            }
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return 0;
     }
 }

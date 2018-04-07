@@ -21,6 +21,11 @@ public class Cns {
         
         //UserList users = new UserList();
         //users.afficher();
+        //ArrayList<String> listeNomSections = users.getListeNomSections();
+        
+        //for(int section:listeSections){System.out.println(section);}
+        //System.out.println(users.getSectionId("SLAM"));
+        //System.out.println(users.getSectionName(1));
         
         ///////////////////////////////////////////////////////////////////////
         //  LA PARTIE USERADD EST FONCTIONNELLE !!!                          //
