@@ -38,6 +38,8 @@ public class Cns {
         ///////////////////////////////////////////////////////////////////////
         //UserDelete usrDlt = new UserDelete(30,"formateur");
         //usrDlt.confirm();
+        TestAdd testadd = new TestAdd();
+        testadd.execute();
     }
     
 }
