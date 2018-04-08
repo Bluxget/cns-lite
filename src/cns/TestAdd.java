@@ -204,12 +204,26 @@ public class TestAdd extends javax.swing.JFrame {
         //System.out.println(userNom.getText());
         //System.out.println(userPrenom.getText());
         //System.out.println(userMdp.getText());
-        ArrayList<String> list = (ArrayList<String>) sectionsList.getSelectedValuesList();
+        
+        
+        //System.out.println(sectionSelected.getClass().getName());
+        //System.out.println(tuteurNp.getClass().getName());
+        
         
         switch (typeUser.getSelectedItem())
         {
             case "apprenti":
-                //userAdd.apprenti(this.userNom, this.userPrenom, this.userMdp, sectionsList.getSelectedValue(), );
+                if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty()){
+                    String sectionSelected = (String) this.sectionsList.getSelectedValue();
+                    String tuteurNp = (String) this.listeTuteurs.getSelectedValue();
+                    String[] nomPrenom = tuteurNp.split(":");
+                    userAdd.apprenti(this.userNom.getText(), this.userPrenom.getText(), 
+                                     this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
+                                     this.userList.getUserId(nomPrenom[0],nomPrenom[1]));
+                    System.out.println("APPRENTI SUCCESS");
+                }
+                else{System.out.println("APPRENTI FAIL");}
+                
                 break;
             case "formateur":
                 
