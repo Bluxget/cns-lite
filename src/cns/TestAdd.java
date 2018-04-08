@@ -200,15 +200,6 @@ public class TestAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_userPrenomActionPerformed
 
     private void validerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerActionPerformed
-        //System.out.println(typeUser.getSelectedItem());
-        //System.out.println(userNom.getText());
-        //System.out.println(userPrenom.getText());
-        //System.out.println(userMdp.getText());
-        
-        
-        //System.out.println(sectionSelected.getClass().getName());
-        //System.out.println(tuteurNp.getClass().getName());
-        
         
         switch (typeUser.getSelectedItem())
         {
