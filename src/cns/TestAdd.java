@@ -7,6 +7,7 @@ package cns;
 
 import java.awt.List;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 /**
@@ -204,16 +205,34 @@ public class TestAdd extends javax.swing.JFrame {
         switch (typeUser.getSelectedItem())
         {
             case "apprenti":
-                if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty()){
-                    String sectionSelected = (String) this.sectionsList.getSelectedValue();
-                    String tuteurNp = (String) this.listeTuteurs.getSelectedValue();
-                    String[] nomPrenom = tuteurNp.split(":");
-                    userAdd.apprenti(this.userNom.getText(), this.userPrenom.getText(), 
-                                     this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
-                                     this.userList.getUserId(nomPrenom[0],nomPrenom[1]));
-                    System.out.println("APPRENTI SUCCESS");
+                if(!this.userNom.getText().equals("")&&!this.userPrenom.getText().equals("")&&!this.userMdp.getText().equals("")){
+                    if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty()){
+                        String sectionSelected = (String) this.sectionsList.getSelectedValue();
+                        String tuteurNp = (String) this.listeTuteurs.getSelectedValue();
+                        String[] nomPrenom = tuteurNp.split(":");
+                        userAdd.apprenti(this.userNom.getText(), this.userPrenom.getText(), 
+                                         this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
+                                         this.userList.getUserId(nomPrenom[0],nomPrenom[1]));
+                        JOptionPane.showMessageDialog(this.valider,
+                        "Apprenti ajouté avec succès");
+                        //System.out.println("APPRENTI SUCCESS");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this.valider,
+                        "veuillez sélectionner UN tuteur et UNE section",
+                        "SAISIE INVALIDE",
+                        JOptionPane.ERROR_MESSAGE);
+                        //System.out.println("APPRENTI FAIL");
+                    }
                 }
-                else{System.out.println("APPRENTI FAIL");}
+                else{
+                    JOptionPane.showMessageDialog(this.valider,
+                    "veuillez renseigner les champs 'nom', 'prénom', et 'mot de passe'",
+                    "SAISIE INVALIDE",
+                    JOptionPane.ERROR_MESSAGE);
+                    //System.out.println("APPRENTI FAIL");
+                    }
+                
                 break;
             case "formateur":
                 if(!this.sectionsList.isSelectionEmpty()){
@@ -238,7 +257,18 @@ public class TestAdd extends javax.swing.JFrame {
                 else{System.out.println("RESPONSABLE FAIL");}
                 break;
             case "tuteur":
-                this.userAdd.tuteur(this.userNom.getText(), this.userPrenom.getText(), this.userMdp.getText());
+                if(!this.userNom.getText().equals("")&&!this.userPrenom.getText().equals("")&&!this.userMdp.getText().equals("")){
+                    this.userAdd.tuteur(this.userNom.getText(), this.userPrenom.getText(), this.userMdp.getText());
+                    JOptionPane.showMessageDialog(this.valider,
+                    "Tuteur ajouté avec succès");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this.valider,
+                    "veuillez renseigner les champs 'nom', 'prénom', et 'mot de passe'",
+                    "SAISIE INVALIDE",
+                    JOptionPane.ERROR_MESSAGE);
+                    //System.out.println("TUTEUR FAIL");
+                }
                 break;
             default:
                 System.out.println("ERROR");
