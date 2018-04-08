@@ -223,16 +223,31 @@ public class TestAdd extends javax.swing.JFrame {
                     System.out.println("APPRENTI SUCCESS");
                 }
                 else{System.out.println("APPRENTI FAIL");}
-                
                 break;
             case "formateur":
-                
+                if(!this.sectionsList.isSelectionEmpty()){
+                    ArrayList<Integer> listeIdSections = new ArrayList();
+                    ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
+                    for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
+                    userAdd.formateur(this.userNom.getText(), this.userPrenom.getText(), 
+                                      this.userMdp.getText(),  listeIdSections);
+                    System.out.println("FORMATEUR SUCCESS");
+                }
+                else{System.out.println("FORMATEUR FAIL");}
                 break;
             case "responsable":
-                
+                if(!this.sectionsList.isSelectionEmpty()){
+                    ArrayList<Integer> listeIdSections = new ArrayList();
+                    ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
+                    for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
+                    userAdd.responsable(this.userNom.getText(), this.userPrenom.getText(), 
+                                      this.userMdp.getText(),  listeIdSections);
+                    System.out.println("RESPONSABLE SUCCESS");
+                }
+                else{System.out.println("RESPONSABLE FAIL");}
                 break;
             case "tuteur":
-                
+                this.userAdd.tuteur(this.userNom.getText(), this.userPrenom.getText(), this.userMdp.getText());
                 break;
             default:
                 System.out.println("ERROR");
