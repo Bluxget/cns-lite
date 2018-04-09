@@ -14,14 +14,14 @@ import javax.swing.JScrollPane;
  *
  * @author Matthias
  */
-public class TestAdd extends javax.swing.JFrame {
+public class GuiUserAdd extends javax.swing.JFrame {
 
     /**
      * Creates new form testAdd
      */
     private UserAdd userAdd = new UserAdd();
     private UserList userList = new UserList();
-    public TestAdd() {
+    public GuiUserAdd() {
         initComponents();
     }
 
@@ -201,77 +201,96 @@ public class TestAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_userPrenomActionPerformed
 
     private void validerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerActionPerformed
-        
-        switch (typeUser.getSelectedItem())
-        {
-            case "apprenti":
-                if(!this.userNom.getText().equals("")&&!this.userPrenom.getText().equals("")&&!this.userMdp.getText().equals("")){
-                    if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty()){
-                        String sectionSelected = (String) this.sectionsList.getSelectedValue();
-                        String tuteurNp = (String) this.listeTuteurs.getSelectedValue();
-                        String[] nomPrenom = tuteurNp.split(":");
-                        userAdd.apprenti(this.userNom.getText(), this.userPrenom.getText(), 
-                                         this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
-                                         this.userList.getUserId(nomPrenom[0],nomPrenom[1]));
+        if(!this.userNom.getText().equals("")&&!this.userPrenom.getText().equals("")&&!this.userMdp.getText().equals("")){
+            switch (typeUser.getSelectedItem())
+            {
+                case "apprenti":
+                    if(!this.userNom.getText().equals("")&&!this.userPrenom.getText().equals("")&&!this.userMdp.getText().equals("")){
+                        if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty()){
+                            String sectionSelected = (String) this.sectionsList.getSelectedValue();
+                            String tuteurNp = (String) this.listeTuteurs.getSelectedValue();
+                            String[] nomPrenom = tuteurNp.split(":");
+                            userAdd.apprenti(this.userNom.getText(), this.userPrenom.getText(), 
+                                             this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
+                                             this.userList.getUserId(nomPrenom[0],nomPrenom[1]));
+                            JOptionPane.showMessageDialog(this.valider,
+                            "Apprenti ajouté avec succès");
+                            this.userNom.setText("");
+                            this.userPrenom.setText("");
+                            this.userMdp.setText("");
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this.valider,
+                            "veuillez sélectionner UN tuteur et UNE section",
+                            "SAISIE INVALIDE",
+                            JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    
+
+                    break;
+                case "formateur":
+                    if(!this.sectionsList.isSelectionEmpty()){
+                        ArrayList<Integer> listeIdSections = new ArrayList();
+                        ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
+                        for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
+                        userAdd.formateur(this.userNom.getText(), this.userPrenom.getText(), 
+                                          this.userMdp.getText(),  listeIdSections);
                         JOptionPane.showMessageDialog(this.valider,
-                        "Apprenti ajouté avec succès");
-                        //System.out.println("APPRENTI SUCCESS");
+                        "Formateur ajouté avec succès");
+                        this.userNom.setText("");
+                        this.userPrenom.setText("");
+                        this.userMdp.setText("");
                     }
                     else{
                         JOptionPane.showMessageDialog(this.valider,
-                        "veuillez sélectionner UN tuteur et UNE section",
+                        "veuillez sélectionner AU MOINS UNE Section",
                         "SAISIE INVALIDE",
                         JOptionPane.ERROR_MESSAGE);
-                        //System.out.println("APPRENTI FAIL");
                     }
-                }
-                else{
-                    JOptionPane.showMessageDialog(this.valider,
-                    "veuillez renseigner les champs 'nom', 'prénom', et 'mot de passe'",
-                    "SAISIE INVALIDE",
-                    JOptionPane.ERROR_MESSAGE);
-                    //System.out.println("APPRENTI FAIL");
+                    break;
+                case "responsable":
+                    if(!this.sectionsList.isSelectionEmpty()){
+                        ArrayList<Integer> listeIdSections = new ArrayList();
+                        ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
+                        for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
+                        userAdd.responsable(this.userNom.getText(), this.userPrenom.getText(), 
+                                          this.userMdp.getText(),  listeIdSections);
+                        JOptionPane.showMessageDialog(this.valider,
+                        "Responsable ajouté avec succès");
+                        this.userNom.setText("");
+                        this.userPrenom.setText("");
+                        this.userMdp.setText("");
                     }
-                
-                break;
-            case "formateur":
-                if(!this.sectionsList.isSelectionEmpty()){
-                    ArrayList<Integer> listeIdSections = new ArrayList();
-                    ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
-                    for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
-                    userAdd.formateur(this.userNom.getText(), this.userPrenom.getText(), 
-                                      this.userMdp.getText(),  listeIdSections);
-                    System.out.println("FORMATEUR SUCCESS");
-                }
-                else{System.out.println("FORMATEUR FAIL");}
-                break;
-            case "responsable":
-                if(!this.sectionsList.isSelectionEmpty()){
-                    ArrayList<Integer> listeIdSections = new ArrayList();
-                    ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
-                    for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
-                    userAdd.responsable(this.userNom.getText(), this.userPrenom.getText(), 
-                                      this.userMdp.getText(),  listeIdSections);
-                    System.out.println("RESPONSABLE SUCCESS");
-                }
-                else{System.out.println("RESPONSABLE FAIL");}
-                break;
-            case "tuteur":
-                if(!this.userNom.getText().equals("")&&!this.userPrenom.getText().equals("")&&!this.userMdp.getText().equals("")){
+                    else{
+                        JOptionPane.showMessageDialog(this.valider,
+                        "veuillez sélectionner AU MOINS UNE Section",
+                        "SAISIE INVALIDE",
+                        JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case "tuteur":
+
                     this.userAdd.tuteur(this.userNom.getText(), this.userPrenom.getText(), this.userMdp.getText());
                     JOptionPane.showMessageDialog(this.valider,
                     "Tuteur ajouté avec succès");
-                }
-                else{
+                    this.userNom.setText("");
+                    this.userPrenom.setText("");
+                    this.userMdp.setText("");
+
+                    break;
+                default:
                     JOptionPane.showMessageDialog(this.valider,
-                    "veuillez renseigner les champs 'nom', 'prénom', et 'mot de passe'",
-                    "SAISIE INVALIDE",
+                    "ERROR",
+                    "UNCATCHED ERROR",
                     JOptionPane.ERROR_MESSAGE);
-                    //System.out.println("TUTEUR FAIL");
-                }
-                break;
-            default:
-                System.out.println("ERROR");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this.valider,
+            "veuillez renseigner les champs 'nom', 'prénom', et 'mot de passe'",
+            "SAISIE INVALIDE",
+            JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_validerActionPerformed
 
@@ -296,14 +315,16 @@ public class TestAdd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TestAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiUserAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TestAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiUserAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TestAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiUserAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TestAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiUserAdd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -311,7 +332,7 @@ public class TestAdd extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new TestAdd().setVisible(true);
+                new GuiUserAdd().setVisible(true);
             }
         });
     }
