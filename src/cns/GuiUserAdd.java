@@ -205,70 +205,94 @@ public class GuiUserAdd extends javax.swing.JFrame {
             switch (typeUser.getSelectedItem())
             {
                 case "apprenti":
-                    if(!this.userNom.getText().equals("")&&!this.userPrenom.getText().equals("")&&!this.userMdp.getText().equals("")){
-                        if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty()){
-                            String sectionSelected = (String) this.sectionsList.getSelectedValue();
-                            String tuteurNp = (String) this.listeTuteurs.getSelectedValue();
-                            String[] nomPrenom = tuteurNp.split(":");
-                            userAdd.apprenti(this.userNom.getText(), this.userPrenom.getText(), 
-                                             this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
-                                             this.userList.getUserId(nomPrenom[0],nomPrenom[1]));
-                            JOptionPane.showMessageDialog(this.valider,
-                            "Apprenti ajouté avec succès");
-                            this.userNom.setText("");
-                            this.userPrenom.setText("");
-                            this.userMdp.setText("");
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(this.valider,
-                            "veuillez sélectionner UN tuteur et UNE section",
-                            "SAISIE INVALIDE",
-                            JOptionPane.ERROR_MESSAGE);
-                        }
-                    }
                     
+                    if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty()){
+                        
+                        String sectionSelected = (String) this.sectionsList.getSelectedValue();
+                        String tuteurNp = (String) this.listeTuteurs.getSelectedValue();
+                        String[] nomPrenom = tuteurNp.split(":");
+                        userAdd.apprenti(this.userNom.getText(), this.userPrenom.getText(), 
+                                         this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
+                                         this.userList.getUserId(nomPrenom[0],nomPrenom[1]));
+                        
+                        JOptionPane.showMessageDialog(this.valider,
+                        "Apprenti ajouté avec succès");
+                        
+                        this.userNom.setText("");
+                        this.userPrenom.setText("");
+                        this.userMdp.setText("");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this.valider,
+                        "veuillez sélectionner UN tuteur et UNE section",
+                        "SAISIE INVALIDE",
+                        JOptionPane.ERROR_MESSAGE);
 
+                    }
                     break;
+                    
                 case "formateur":
+                    
                     if(!this.sectionsList.isSelectionEmpty()){
+                        
                         ArrayList<Integer> listeIdSections = new ArrayList();
                         ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
+                        
                         for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
+                        
                         userAdd.formateur(this.userNom.getText(), this.userPrenom.getText(), 
                                           this.userMdp.getText(),  listeIdSections);
+                        
                         JOptionPane.showMessageDialog(this.valider,
                         "Formateur ajouté avec succès");
+                        
                         this.userNom.setText("");
                         this.userPrenom.setText("");
                         this.userMdp.setText("");
+                        
                     }
+                    
                     else{
+                        
                         JOptionPane.showMessageDialog(this.valider,
                         "veuillez sélectionner AU MOINS UNE Section",
                         "SAISIE INVALIDE",
                         JOptionPane.ERROR_MESSAGE);
+                        
                     }
                     break;
+                    
                 case "responsable":
+                    
                     if(!this.sectionsList.isSelectionEmpty()){
+                        
                         ArrayList<Integer> listeIdSections = new ArrayList();
                         ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
+                        
                         for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
+                        
                         userAdd.responsable(this.userNom.getText(), this.userPrenom.getText(), 
                                           this.userMdp.getText(),  listeIdSections);
+                        
                         JOptionPane.showMessageDialog(this.valider,
                         "Responsable ajouté avec succès");
+                        
                         this.userNom.setText("");
                         this.userPrenom.setText("");
                         this.userMdp.setText("");
+                        
                     }
+                    
                     else{
+                        
                         JOptionPane.showMessageDialog(this.valider,
                         "veuillez sélectionner AU MOINS UNE Section",
                         "SAISIE INVALIDE",
                         JOptionPane.ERROR_MESSAGE);
+                        
                     }
                     break;
+                    
                 case "tuteur":
 
                     this.userAdd.tuteur(this.userNom.getText(), this.userPrenom.getText(), this.userMdp.getText());
@@ -279,18 +303,23 @@ public class GuiUserAdd extends javax.swing.JFrame {
                     this.userMdp.setText("");
 
                     break;
+                    
                 default:
+                    
                     JOptionPane.showMessageDialog(this.valider,
                     "ERROR",
                     "UNCATCHED ERROR",
                     JOptionPane.ERROR_MESSAGE);
             }
         }
+        
         else{
+            
             JOptionPane.showMessageDialog(this.valider,
             "veuillez renseigner les champs 'nom', 'prénom', et 'mot de passe'",
             "SAISIE INVALIDE",
             JOptionPane.ERROR_MESSAGE);
+            
         }
     }//GEN-LAST:event_validerActionPerformed
 
