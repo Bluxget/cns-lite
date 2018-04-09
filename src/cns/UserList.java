@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -246,5 +247,57 @@ public class UserList extends JFrame implements ActionListener {
         }
         return 0;
     }
-    
+    public String[][] getApprentisTab(){
+        String request = "SELECT `nom`, `prenom`, `mot_de_passe` FROM utilisateurs "
+                       + "WHERE id_utilisateur IN (SELECT id_utilisateur FROM apprentis)";
+        return this.getTab(request);
+    }
+    public String[][] getFormateursTab(){
+        String request = "SELECT `nom`, `prenom`, `mot_de_passe` FROM utilisateurs "
+                       + "WHERE id_utilisateur IN (SELECT id_utilisateur FROM formateurs)";
+        return this.getTab(request);
+    }
+    public String[][] getResponsablesTab(){
+        String request = "SELECT `nom`, `prenom`, `mot_de_passe` FROM utilisateurs "
+                       + "WHERE id_utilisateur IN (SELECT id_utilisateur FROM responsables)";
+        return this.getTab(request);
+    }
+    public String[][] getTuteursTab(){
+        String request = "SELECT `nom`, `prenom`, `mot_de_passe` FROM utilisateurs "
+                       + "WHERE id_utilisateur IN (SELECT id_utilisateur FROM tuteurs)";
+        return this.getTab(request);
+    }
+    public String[][] getTab(String request){
+        
+        ResultSet result = this.db.select(request);
+        
+        try 
+        {
+            ResultSetMetaData metaData = result.getMetaData();
+            int nbCol = metaData.getColumnCount();
+            //on place le curseur sur le dernier tuple 
+            result.last(); 
+            //on récupère le numéro de la ligne 
+            int nbRow = result.getRow(); 
+            //on replace le curseur avant la première ligne 
+            result.beforeFirst(); 
+            
+            int i = 0; //incrément
+            String[][] tab = new String[nbRow][nbCol];
+            //tant qu'il y a des entrées
+            while (result.next()){
+                for(int j=0; j<nbCol;j++){
+                    tab[i][j] = result.getString(j+1);
+                }
+                i++; 
+            }
+            return tab;
+            
+        }
+        catch(SQLException ex) 
+        {
+           ex.printStackTrace();
+        }
+        return null;
+    }   
 }

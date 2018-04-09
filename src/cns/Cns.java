@@ -51,6 +51,11 @@ public class Cns {
         //for(String str:arr){System.out.println(str);}
         TestMainGui testMainGui = new TestMainGui();
         testMainGui.execute();
+        //UserList usrList = new UserList();
+        //String [][] tab = usrList.getApprentisTab();
+        
+        //System.out.println(tab[3][2]);
+        
     }
     
 }

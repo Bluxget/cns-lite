@@ -14,6 +14,7 @@ public class TestMainGui extends javax.swing.JFrame {
     /**
      * Creates new form TestMainGui
      */
+    UserList usrList = new UserList();
     public TestMainGui() {
         initComponents();
     }
@@ -58,22 +59,18 @@ public class TestMainGui extends javax.swing.JFrame {
 
         modifUser.setText("Modifier Utilisateur");
 
+        String[][] appTab = this.usrList.getApprentisTab();
         appTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            appTab,
             new String [] {
-                "nom", "prenom", "mot_de_passe", "section"
+                "nom", "prenom", "mot_de_passe"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,22 +96,18 @@ public class TestMainGui extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("apprentis", appPanel);
 
+        String[][] formTab = this.usrList.getFormateursTab();
         formTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            formTab,
             new String [] {
-                "nom", "prenom", "mot_de_passe", "section"
+                "nom", "prenom", "mot_de_passe"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -140,22 +133,18 @@ public class TestMainGui extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("formateurs", formPanel);
 
+        String[][] respTab = this.usrList.getResponsablesTab();
         respTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            respTab,
             new String [] {
-                "nom", "prenom", "mot_de_passe", "section"
+                "nom", "prenom", "mot_de_passe"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -181,13 +170,9 @@ public class TestMainGui extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("responsables", resPanel);
 
+        String[][] tuTab = this.usrList.getTuteursTab();
         tuTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
+            tuTab,
             new String [] {
                 "nom", "prenom", "mot_de_passe"
             }
