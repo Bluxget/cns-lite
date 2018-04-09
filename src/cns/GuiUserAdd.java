@@ -7,6 +7,8 @@ package cns;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
@@ -51,7 +53,7 @@ public class GuiUserAdd extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         listeTuteurs = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ajout utilisateur");
 
         userNom.addActionListener(new java.awt.event.ActionListener() {
@@ -324,7 +326,12 @@ public class GuiUserAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_validerActionPerformed
 
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
-        System.exit(0);
+        this.dispose();
+        try {
+            this.finalize();
+        } catch (Throwable ex) {
+            Logger.getLogger(GuiUserAdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_annulerActionPerformed
 
     /**

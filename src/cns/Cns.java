@@ -43,12 +43,14 @@ public class Cns {
         ///////////////////////////////////////////////////////////////////////
         //UserDelete usrDlt = new UserDelete(30,"formateur");
         //usrDlt.confirm();
-        GuiUserAdd guiAdd = new GuiUserAdd();
-        guiAdd.execute();
+        //GuiUserAdd guiAdd = new GuiUserAdd();
+        //guiAdd.execute();
         //String test = "testA:testB";
         //String[] arr = test.split(":");
         //System.out.println(arr[0]+" "+arr[1]);
         //for(String str:arr){System.out.println(str);}
+        TestMainGui testMainGui = new TestMainGui();
+        testMainGui.execute();
     }
     
 }
