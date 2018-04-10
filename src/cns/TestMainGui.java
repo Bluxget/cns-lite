@@ -58,6 +58,11 @@ public class TestMainGui extends javax.swing.JFrame {
         supprUser.setText("Supprimer Utilisateur");
 
         modifUser.setText("Modifier Utilisateur");
+        modifUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifUserActionPerformed(evt);
+            }
+        });
 
         String[][] appTab = this.usrList.getApprentisTab();
         appTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -245,6 +250,10 @@ public class TestMainGui extends javax.swing.JFrame {
         guiAdd.execute();
     }//GEN-LAST:event_ajoutUtilisateurActionPerformed
 
+    private void modifUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifUserActionPerformed
+        //System.out.println(this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+    }//GEN-LAST:event_modifUserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,7 +296,6 @@ public class TestMainGui extends javax.swing.JFrame {
     private javax.swing.JTable appTable;
     private javax.swing.JPanel formPanel;
     private javax.swing.JTable formTable;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPaneApp;
     private javax.swing.JScrollPane jScrollPaneForm;
     private javax.swing.JScrollPane jScrollPaneRes;
