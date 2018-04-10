@@ -51,7 +51,7 @@ public class Cns {
         //for(String str:arr){System.out.println(str);}
         //TestMainGui testMainGui = new TestMainGui();
         //testMainGui.execute();
-        GuiUserUpdate guiUsrUp = new GuiUserUpdate(1,"formateurs");
+        GuiUserUpdate guiUsrUp = new GuiUserUpdate(5,"formateurs");
         guiUsrUp.execute();
         //UserList usrList = new UserList();
         //String [][] tab = usrList.getApprentisTab();
