@@ -53,7 +53,7 @@ public class GuiUserUpdate extends javax.swing.JFrame {
         annuler = new javax.swing.JButton();
         userMdp = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CNS - User Edit");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 

@@ -49,10 +49,10 @@ public class Cns {
         //String[] arr = test.split(":");
         //System.out.println(arr[0]+" "+arr[1]);
         //for(String str:arr){System.out.println(str);}
-        //TestMainGui testMainGui = new TestMainGui();
-        //testMainGui.execute();
-        GuiUserUpdate guiUsrUp = new GuiUserUpdate(5,"formateurs");
-        guiUsrUp.execute();
+        TestMainGui testMainGui = new TestMainGui();
+        testMainGui.execute();
+        //GuiUserUpdate guiUsrUp = new GuiUserUpdate(5,"formateurs");
+        //guiUsrUp.execute();
         //UserList usrList = new UserList();
         //String [][] tab = usrList.getApprentisTab();
         

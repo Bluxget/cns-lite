@@ -252,8 +252,44 @@ public class TestMainGui extends javax.swing.JFrame {
 
     private void modifUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifUserActionPerformed
         //System.out.println(this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+        
+        switch (this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()))
+        {
+            case"apprentis":
+                this.userUpdate(
+                    this.usrList.getUserId(
+                        (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),0), 
+                        (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),1)),
+                    this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                break;
+            case"formateurs":
+                this.userUpdate(
+                    this.usrList.getUserId(
+                        (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),0), 
+                        (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)),
+                    this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                break;
+            case"responsables":
+                this.userUpdate(
+                    this.usrList.getUserId(
+                        (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),0), 
+                        (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)),
+                    this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                break;
+            case"tuteurs":
+                this.userUpdate(
+                    this.usrList.getUserId(
+                        (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),0), 
+                        (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)),
+                    this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                break;
+            default:
+        }
     }//GEN-LAST:event_modifUserActionPerformed
-
+    public void userUpdate(int id, String userType){
+        GuiUserUpdate guiUserUpdate = new GuiUserUpdate(id, userType);
+        guiUserUpdate.execute();
+    }
     /**
      * @param args the command line arguments
      */
