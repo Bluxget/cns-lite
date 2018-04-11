@@ -270,7 +270,7 @@ public class TestMainGui extends javax.swing.JFrame {
                 }
                 break;
             case"formateurs":
-                if(this.appTable.getSelectedRow() != -1){
+                if(this.formTable.getSelectedRow() != -1){
                     this.userUpdate(
                         this.usrList.getUserId(
                             (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),0), 
@@ -282,7 +282,7 @@ public class TestMainGui extends javax.swing.JFrame {
                 }
                 break;
             case"responsables":
-            if(this.appTable.getSelectedRow() != -1){
+            if(this.respTable.getSelectedRow() != -1){
                     this.userUpdate(
                         this.usrList.getUserId(
                             (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),0), 
@@ -294,7 +294,7 @@ public class TestMainGui extends javax.swing.JFrame {
                 }
                 break;
             case"tuteurs":
-            if(this.appTable.getSelectedRow() != -1){
+            if(this.tuTable.getSelectedRow() != -1){
                     this.userUpdate(
                         this.usrList.getUserId(
                             (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),0), 
