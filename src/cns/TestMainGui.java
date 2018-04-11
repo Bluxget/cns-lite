@@ -5,6 +5,8 @@
  */
 package cns;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,6 +60,11 @@ public class TestMainGui extends javax.swing.JFrame {
         });
 
         supprUser.setText("Supprimer Utilisateur");
+        supprUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprUserActionPerformed(evt);
+            }
+        });
 
         modifUser.setText("Modifier Utilisateur");
         modifUser.addActionListener(new java.awt.event.ActionListener() {
@@ -250,6 +257,7 @@ public class TestMainGui extends javax.swing.JFrame {
     private void ajoutUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutUtilisateurActionPerformed
         GuiUserAdd guiAdd = new GuiUserAdd();
         guiAdd.execute();
+        
     }//GEN-LAST:event_ajoutUtilisateurActionPerformed
 
     private void modifUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifUserActionPerformed
@@ -308,9 +316,73 @@ public class TestMainGui extends javax.swing.JFrame {
             default:
         }
     }//GEN-LAST:event_modifUserActionPerformed
+
+    private void supprUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprUserActionPerformed
+        JOptionPane delConfirmationPane = new JOptionPane();
+        int choix = delConfirmationPane.showConfirmDialog(this, "Voulez-vous Supprimer l'utilisateur sélectionné ?", "Confirmation suppression", JOptionPane.YES_NO_OPTION);
+        // choix = 0 pour 'oui' et choix = 1 pour 'non'
+        if(choix == 0){
+            switch (this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()))
+            {
+                case"apprentis":
+                    try {
+                        this.userDelete(this.usrList.getUserId(
+                            (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),0), 
+                            (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),1)), "apprenti");
+                        } 
+                    catch (Throwable ex) {
+                            Logger.getLogger(TestMainGui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    JOptionPane.showMessageDialog(this.supprUser,
+                        "Apprenti supprimé avec succès");
+                    break;
+                case"formateurs":
+                    try {
+                        this.userDelete(this.usrList.getUserId(
+                            (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),0), 
+                            (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)), "formateur");
+                        } 
+                    catch (Throwable ex) {
+                            Logger.getLogger(TestMainGui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    JOptionPane.showMessageDialog(this.supprUser,
+                        "Formateur Supprimé avec succès");
+                    break;
+                case"responsables":
+                    try {
+                        this.userDelete(this.usrList.getUserId(
+                            (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),0), 
+                            (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)), "responsable");
+                        } 
+                    catch (Throwable ex) {
+                            Logger.getLogger(TestMainGui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    JOptionPane.showMessageDialog(this.supprUser,
+                        "Responsable Supprimé avec succès");
+                    break;
+                case"tuteurs":
+                    try {
+                        this.userDelete(this.usrList.getUserId(
+                            (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),0), 
+                            (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)), "tuteur");
+                        } 
+                    catch (Throwable ex) {
+                            Logger.getLogger(TestMainGui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    JOptionPane.showMessageDialog(this.supprUser,
+                        "Tuteur Supprimé avec succès");
+                    break;
+                default:
+            }
+        }
+    }//GEN-LAST:event_supprUserActionPerformed
     public void userUpdate(int id, String userType){
         GuiUserUpdate guiUserUpdate = new GuiUserUpdate(id, userType);
         guiUserUpdate.execute();
+    }
+    public void userDelete(int id, String userType) throws Throwable{
+        UserDelete userDelete = new UserDelete(id, userType);
+        userDelete.confirm();
     }
     public void tableSelectionError(){
         JOptionPane.showMessageDialog(this,
