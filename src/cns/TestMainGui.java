@@ -5,6 +5,8 @@
  */
 package cns;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Matthias
@@ -256,32 +258,52 @@ public class TestMainGui extends javax.swing.JFrame {
         switch (this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()))
         {
             case"apprentis":
-                this.userUpdate(
+                if(this.appTable.getSelectedRow() != -1){
+                    this.userUpdate(
                     this.usrList.getUserId(
                         (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),0), 
                         (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),1)),
                     this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                }
+                else{
+                    this.tableSelectionError();
+                }
                 break;
             case"formateurs":
-                this.userUpdate(
-                    this.usrList.getUserId(
-                        (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),0), 
-                        (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)),
-                    this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                if(this.appTable.getSelectedRow() != -1){
+                    this.userUpdate(
+                        this.usrList.getUserId(
+                            (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),0), 
+                            (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)),
+                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                }
+                else{
+                    this.tableSelectionError();
+                }
                 break;
             case"responsables":
-                this.userUpdate(
-                    this.usrList.getUserId(
-                        (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),0), 
-                        (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)),
-                    this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+            if(this.appTable.getSelectedRow() != -1){
+                    this.userUpdate(
+                        this.usrList.getUserId(
+                            (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),0), 
+                            (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)),
+                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                }
+                else{
+                    this.tableSelectionError();
+                }
                 break;
             case"tuteurs":
-                this.userUpdate(
-                    this.usrList.getUserId(
-                        (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),0), 
-                        (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)),
-                    this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+            if(this.appTable.getSelectedRow() != -1){
+                    this.userUpdate(
+                        this.usrList.getUserId(
+                            (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),0), 
+                            (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)),
+                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                }
+                else{
+                    this.tableSelectionError();
+                }
                 break;
             default:
         }
@@ -290,6 +312,13 @@ public class TestMainGui extends javax.swing.JFrame {
         GuiUserUpdate guiUserUpdate = new GuiUserUpdate(id, userType);
         guiUserUpdate.execute();
     }
+    public void tableSelectionError(){
+        JOptionPane.showMessageDialog(this,
+                        "veuillez sélectionner UN utilisateur à modifier",
+                        "SELECTION INVALIDE",
+                        JOptionPane.ERROR_MESSAGE);
+    }
+    
     /**
      * @param args the command line arguments
      */
