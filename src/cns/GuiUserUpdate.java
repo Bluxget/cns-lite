@@ -46,11 +46,11 @@ public class GuiUserUpdate extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         listeTuteurs = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        sectionsList = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        valider = new javax.swing.JButton();
+        annuler = new javax.swing.JButton();
         userMdp = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,22 +76,34 @@ public class GuiUserUpdate extends javax.swing.JFrame {
         public int getSize() { return listeNomTuteurs.size(); }
         public String getElementAt(int i) { return listeNomTuteurs.get(i); }
     });
+    if(this.userType.equals("formateurs")||this.userType.equals("responsables")){this.listeTuteurs.setEnabled(false);}
     jScrollPane2.setViewportView(listeTuteurs);
 
     ArrayList<String> listeNomSections = this.userList.getListeNomSections();
-    jList3.setModel(new javax.swing.AbstractListModel<String>() {
+    sectionsList.setModel(new javax.swing.AbstractListModel<String>() {
         public int getSize() { return listeNomSections.size(); }
         public String getElementAt(int i) { return listeNomSections.get(i); }
     });
-    jScrollPane3.setViewportView(jList3);
+    if(this.userType.equals("tuteurs")){this.sectionsList.setEnabled(false);}
+    jScrollPane3.setViewportView(sectionsList);
 
     jLabel4.setText("tuteurs");
 
     jLabel5.setText("sections");
 
-    jButton1.setText("valider");
+    valider.setText("valider");
+    valider.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            validerActionPerformed(evt);
+        }
+    });
 
-    jButton2.setText("annuler");
+    annuler.setText("annuler");
+    annuler.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            annulerActionPerformed(evt);
+        }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -110,8 +122,8 @@ public class GuiUserUpdate extends javax.swing.JFrame {
                         .addComponent(userPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                         .addComponent(userNom)
                         .addComponent(userMdp)))
-                .addComponent(jButton1)
-                .addComponent(jButton2))
+                .addComponent(valider)
+                .addComponent(annuler))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,9 +159,9 @@ public class GuiUserUpdate extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(userMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton1)
+                    .addComponent(valider)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton2)
+                    .addComponent(annuler)
                     .addGap(0, 440, Short.MAX_VALUE))
                 .addComponent(jScrollPane2))
             .addContainerGap())
@@ -158,52 +170,36 @@ public class GuiUserUpdate extends javax.swing.JFrame {
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void validerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_validerActionPerformed
+
+    private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_annulerActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public void execute() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiUserUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiUserUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiUserUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiUserUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         
         this.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton annuler;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JList<String> listeTuteurs;
+    private javax.swing.JList<String> sectionsList;
     private javax.swing.JPasswordField userMdp;
     private javax.swing.JTextField userNom;
     private javax.swing.JTextField userPrenom;
+    private javax.swing.JButton valider;
     // End of variables declaration//GEN-END:variables
 }
