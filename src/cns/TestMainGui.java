@@ -53,6 +53,7 @@ public class TestMainGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CNS - ADMINISTRATEUR");
+        setResizable(false);
 
         ajoutUtilisateur.setText("Ajout Utilisateur");
         ajoutUtilisateur.addActionListener(new java.awt.event.ActionListener() {
