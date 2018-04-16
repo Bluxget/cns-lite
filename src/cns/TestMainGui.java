@@ -358,6 +358,7 @@ public class TestMainGui extends javax.swing.JFrame {
                             "Formateur Supprimé avec succès");
                     }
                 }
+                else{this.tableSelectionError();}
                 break;
             case"responsables":
                 if(this.respTable.getSelectedRow()!= -1){
@@ -374,6 +375,7 @@ public class TestMainGui extends javax.swing.JFrame {
                             "Responsable Supprimé avec succès");
                     }
                 }
+                else{this.tableSelectionError();}
                 break;
             case"tuteurs":
                 if(this.respTable.getSelectedRow()!= -1){
@@ -390,6 +392,7 @@ public class TestMainGui extends javax.swing.JFrame {
                             "Tuteur Supprimé avec succès");
                     }
                 }
+                else{this.tableSelectionError();}
                 break;
             default:
         }
