@@ -6,24 +6,37 @@
 package cns;
 
 import java.awt.List;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 
 /**
  *
  * @author Matthias
  */
-public class GuiUserAdd extends javax.swing.JFrame {
+public class GuiUserAdd extends javax.swing.JDialog {
 
     /**
      * Creates new form testAdd
      */
     private UserAdd userAdd = new UserAdd();
     private UserList userList = new UserList();
+    
     public GuiUserAdd() {
+        Cns.MainGui.setVisible(false);
+        
+        this.addWindowListener(new WindowAdapter() {
+ 
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Cns.MainGui.setVisible(true);
+            }
+          });
+         
         initComponents();
     }
 
@@ -332,6 +345,8 @@ public class GuiUserAdd extends javax.swing.JFrame {
         } catch (Throwable ex) {
             Logger.getLogger(GuiUserAdd.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        Cns.MainGui.setVisible(true);
     }//GEN-LAST:event_annulerActionPerformed
 
     /**

@@ -5,6 +5,8 @@
  */
 package cns;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +27,17 @@ public class GuiUserUpdate extends javax.swing.JFrame {
         this.userType = userType;
         this.idUser = idUser;
         this.userUpdate = new UserUpdate(idUser);
+        
+        Cns.MainGui.setVisible(false);
+        
+        this.addWindowListener(new WindowAdapter() {
+ 
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Cns.MainGui.setVisible(true);
+            }
+          });
+        
         initComponents();
         
     }
@@ -175,7 +188,7 @@ public class GuiUserUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_validerActionPerformed
 
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
-        // TODO add your handling code here:
+        Cns.MainGui.setVisible(true);
     }//GEN-LAST:event_annulerActionPerformed
 
     /**

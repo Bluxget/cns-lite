@@ -5,6 +5,8 @@
  */
 package cns;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -256,8 +258,8 @@ public class TestMainGui extends javax.swing.JFrame {
 
     private void ajoutUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutUtilisateurActionPerformed
         GuiUserAdd guiAdd = new GuiUserAdd();
-        guiAdd.execute();
         
+        guiAdd.execute();
     }//GEN-LAST:event_ajoutUtilisateurActionPerformed
 
     private void modifUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifUserActionPerformed
@@ -403,16 +405,126 @@ public class TestMainGui extends javax.swing.JFrame {
     public void userUpdate(int id, String userType){
         GuiUserUpdate guiUserUpdate = new GuiUserUpdate(id, userType);
         guiUserUpdate.execute();
+        
+        this.reloadTable();
     }
     public void userDelete(int id, String userType) throws Throwable{
         UserDelete userDelete = new UserDelete(id, userType);
         userDelete.confirm();
+        
+        this.reloadTable();
     }
     public void tableSelectionError(){
         JOptionPane.showMessageDialog(this,
-                        "veuillez sélectionner UN utilisateur à modifier",
+                        "veuillez sélectionner UN utilisateur",
                         "SELECTION INVALIDE",
                         JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void setVisible(boolean visible)
+    {
+        this.reloadTable();
+        
+        super.setVisible(visible);
+    }
+    
+    public void reloadTable()
+    {
+        String[][] appTab = this.usrList.getApprentisTab();
+        appTable.setModel(new javax.swing.table.DefaultTableModel(
+            appTab,
+            new String [] {
+                "nom", "prenom", "mot_de_passe"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPaneApp.setViewportView(appTable);
+        
+        String[][] formTab = this.usrList.getFormateursTab();
+        formTable.setModel(new javax.swing.table.DefaultTableModel(
+            formTab,
+            new String [] {
+                "nom", "prenom", "mot_de_passe"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPaneForm.setViewportView(formTable);
+        
+        String[][] tuTab = this.usrList.getTuteursTab();
+        tuTable.setModel(new javax.swing.table.DefaultTableModel(
+            tuTab,
+            new String [] {
+                "nom", "prenom", "mot_de_passe"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPaneTut.setViewportView(tuTable);
+        
+        String[][] respTab = this.usrList.getResponsablesTab();
+        respTable.setModel(new javax.swing.table.DefaultTableModel(
+            respTab,
+            new String [] {
+                "nom", "prenom", "mot_de_passe"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPaneRes.setViewportView(respTable);
     }
     
     /**
@@ -446,7 +558,8 @@ public class TestMainGui extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new TestMainGui().setVisible(true);
+                Cns.MainGui = new TestMainGui();
+                Cns.MainGui.setVisible(true);
             }
         });
     }
