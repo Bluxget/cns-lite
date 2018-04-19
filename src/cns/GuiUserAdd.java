@@ -5,13 +5,11 @@
  */
 package cns;
 
-import java.awt.List;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,8 +21,8 @@ public class GuiUserAdd extends javax.swing.JDialog {
     /**
      * Creates new form testAdd
      */
-    private UserAdd userAdd = new UserAdd();
-    private UserList userList = new UserList();
+    private final UserAdd userAdd = new UserAdd();
+    private final UserList userList = new UserList();
     
     public GuiUserAdd() {
         Cns.MainGui.setVisible(false);
@@ -351,7 +349,6 @@ public class GuiUserAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_annulerActionPerformed
 
     /**
-     * @param args the command line arguments
      */
     public void execute() {
         /* Set the Nimbus look and feel */

@@ -18,10 +18,10 @@ public class GuiUserUpdate extends javax.swing.JFrame {
     /**
      * Creates new form GuiUserUpdate
      */
-    private String userType;
-    private int idUser;
-    private UserList userList = new UserList();
-    private UserUpdate userUpdate;
+    private final String userType;
+    private final int idUser;
+    private final UserList userList = new UserList();
+    private final UserUpdate userUpdate;
     
     public GuiUserUpdate(int idUser, String userType) {
         this.userType = userType;
@@ -193,7 +193,6 @@ public class GuiUserUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_annulerActionPerformed
 
     /**
-     * @param args the command line arguments
      */
     public void execute() {
         

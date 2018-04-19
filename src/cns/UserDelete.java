@@ -17,8 +17,9 @@ public class UserDelete {
     
     private JButton oui, non;
     protected DataBase db = new DataBase();
-    private String typeUserT, typeUserC;
-    private int id;
+    private final String typeUserT;
+    private final String typeUserC;
+    private final int id;
     public UserDelete(int id, String typeUser)
     {   
         this.id = id;

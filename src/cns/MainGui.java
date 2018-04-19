@@ -5,8 +5,6 @@
  */
 package cns;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -15,13 +13,13 @@ import javax.swing.JOptionPane;
  *
  * @author Matthias
  */
-public class TestMainGui extends javax.swing.JFrame {
+public class MainGui extends javax.swing.JFrame {
 
     /**
-     * Creates new form TestMainGui
+     * Creates new form MainGui
      */
     UserList usrList = new UserList();
-    public TestMainGui() {
+    public MainGui() {
         initComponents();
     }
 
@@ -335,7 +333,7 @@ public class TestMainGui extends javax.swing.JFrame {
                                 (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),1)), "apprenti");
                             } 
                         catch (Throwable ex) {
-                                Logger.getLogger(TestMainGui.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         JOptionPane.showMessageDialog(this.supprUser,
                             "Apprenti supprimé avec succès");
@@ -353,7 +351,7 @@ public class TestMainGui extends javax.swing.JFrame {
                                 (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)), "formateur");
                             } 
                         catch (Throwable ex) {
-                                Logger.getLogger(TestMainGui.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         JOptionPane.showMessageDialog(this.supprUser,
                             "Formateur Supprimé avec succès");
@@ -370,7 +368,7 @@ public class TestMainGui extends javax.swing.JFrame {
                                 (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)), "responsable");
                             } 
                         catch (Throwable ex) {
-                                Logger.getLogger(TestMainGui.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         JOptionPane.showMessageDialog(this.supprUser,
                             "Responsable Supprimé avec succès");
@@ -387,7 +385,7 @@ public class TestMainGui extends javax.swing.JFrame {
                                 (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)), "tuteur");
                             } 
                         catch (Throwable ex) {
-                                Logger.getLogger(TestMainGui.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         JOptionPane.showMessageDialog(this.supprUser,
                             "Tuteur Supprimé avec succès");
@@ -425,6 +423,7 @@ public class TestMainGui extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
     }
     
+    @Override
     public void setVisible(boolean visible)
     {
         this.reloadTable();
@@ -448,10 +447,12 @@ public class TestMainGui extends javax.swing.JFrame {
                 false, false, false
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -472,10 +473,12 @@ public class TestMainGui extends javax.swing.JFrame {
                 false, false, false
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -496,10 +499,12 @@ public class TestMainGui extends javax.swing.JFrame {
                 false, false, false
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -520,10 +525,12 @@ public class TestMainGui extends javax.swing.JFrame {
                 false, false, false
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -531,9 +538,6 @@ public class TestMainGui extends javax.swing.JFrame {
         jScrollPaneRes.setViewportView(respTable);
     }
     
-    /**
-     * @param args the command line arguments
-     */
     public void execute() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -548,21 +552,22 @@ public class TestMainGui extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TestMainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TestMainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TestMainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TestMainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Cns.MainGui = new TestMainGui();
+                Cns.MainGui = new MainGui();
                 Cns.MainGui.setVisible(true);
             }
         });
