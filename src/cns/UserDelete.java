@@ -20,36 +20,40 @@ public class UserDelete {
     private final String typeUserT;
     private final String typeUserC;
     private final int id;
+    
     public UserDelete(int id, String typeUser)
     {   
         this.id = id;
         this.typeUserC = typeUser;
         this.typeUserT = typeUser+"s";
-        
-        
     }
-    public boolean confirm() throws Throwable{
-        switch (this.typeUserC)
+    public boolean confirm() throws Throwable {
+        
+        switch(this.typeUserC)
         {
             case "apprenti":
-                if(this.alreadyInDb()){
+                if(this.alreadyInDb())
+                {
                     this.user();
                 }
                 return true;
             case "formateur":
-                if(this.alreadyInDb()){
+                if(this.alreadyInDb())
+                {
                     this.userSections();
                     this.user();
                 }
                 return true;
             case "responsable":
-                if(this.alreadyInDb()){
+                if(this.alreadyInDb())
+                {
                     this.userSections();
                     this.user();
                 }
                 return true;
             case "tuteur":
-                if(this.alreadyInDb()){
+                if(this.alreadyInDb())
+                {
                     this.user();
                 }
                 return true;
@@ -57,7 +61,8 @@ public class UserDelete {
                 return false;             
         }
     }
-    private void user(){
+    
+    private void user() {
         
         String request = "DELETE FROM "+this.typeUserT+" "
                        + "WHERE id_utilisateur = "+this.id+"";
@@ -68,13 +73,15 @@ public class UserDelete {
         this.db.edit(request);
         
     }
-    private void userSections(){
+    
+    private void userSections() {
         
         String request = "DELETE FROM "+this.typeUserT+"_sections "
                        + "WHERE id_"+this.typeUserC+" = "+this.id+"";
         this.db.edit(request);
     }
-    private boolean alreadyInDb(){
+    
+    private boolean alreadyInDb() {
         
         String request = "SELECT id_utilisateur FROM utilisateurs "
                        + "WHERE id_utilisateur = "+this.id+"";
@@ -90,6 +97,4 @@ public class UserDelete {
         }
         return false;
     }
-    
-    
 }

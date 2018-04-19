@@ -19,11 +19,10 @@ public class UserAdd {
     
     protected DataBase db = new DataBase();
     
-    
-    public void apprenti(String nom, String prenom, String mdp, int idSection, int idTuteur){
+    public void apprenti(String nom, String prenom, String mdp, int idSection, int idTuteur) {
         
-        if(!this.alreadyInDb(nom, prenom, mdp)){
-            
+        if(!this.alreadyInDb(nom, prenom, mdp))
+        {
             this.user(nom, prenom, mdp, "apprentis");
             String request = "INSERT INTO `apprentis` (`id_utilisateur`, `id_section`, `id_tuteur`) "
                            + "SELECT utilisateurs.id_utilisateur, sections.id_section, tuteurs.id_utilisateur "
@@ -37,31 +36,40 @@ public class UserAdd {
         }
     }
     
-    public void formateur(String nom, String prenom, String mdp, ArrayList<Integer> arraySections){
-        if(!this.alreadyInDb(nom, prenom, mdp)){
+    public void formateur(String nom, String prenom, String mdp, ArrayList<Integer> arraySections) {
+        
+        if(!this.alreadyInDb(nom, prenom, mdp))
+        {
             this.user(nom, prenom, mdp, "formateurs");
             this.userSections(nom, prenom, mdp, "formateurs", "formateur", arraySections);
         }
     }
-    public void responsable(String nom, String prenom, String mdp, ArrayList<Integer> arraySections){
-        if(!this.alreadyInDb(nom, prenom, mdp)){
+    
+    public void responsable(String nom, String prenom, String mdp, ArrayList<Integer> arraySections) {
+        
+        if(!this.alreadyInDb(nom, prenom, mdp))
+        {
             this.user(nom, prenom, mdp, "responsables");
             this.userSections(nom, prenom, mdp, "responsables", "responsable", arraySections);
         }
     }
-    public void tuteur(String nom, String prenom, String mdp){
-        if(!this.alreadyInDb(nom, prenom, mdp)){
+    
+    public void tuteur(String nom, String prenom, String mdp) {
+        
+        if(!this.alreadyInDb(nom, prenom, mdp))
+        {
             this.user(nom, prenom, mdp, "tuteurs");
         }
     }
-    private void user(String nom, String prenom, String mdp, String type){
+    
+    private void user(String nom, String prenom, String mdp, String type) {
         
         String request = "INSERT INTO `utilisateurs` (`id_utilisateur`, `nom`, `prenom`, `mot_de_passe`) "
                         +"VALUES (NULL, '"+nom+"', '"+prenom+"', '"+mdp+"');";
         this.db.edit(request);
         
-        if (type != "apprentis"){
-            
+        if (type != "apprentis")
+        {
             request = "INSERT INTO "+type+" (id_utilisateur) "
                 + "SELECT id_utilisateur FROM utilisateurs "
                 + "WHERE utilisateurs.nom = '"+nom+"' "
@@ -70,13 +78,13 @@ public class UserAdd {
             this.db.edit(request);
         }
     }
-    private void userSections(String nom, String prenom, String mdp, String typeT, String typeC, ArrayList<Integer> arraySections){
+    
+    private void userSections(String nom, String prenom, String mdp, String typeT, String typeC, ArrayList<Integer> arraySections) {
             
-        if (arraySections.size()>0){
-            
-            for (int section:arraySections)
+        if(arraySections.size() > 0)
+        {
+            for(int section:arraySections)
             {
-
                 String request = "INSERT INTO "+typeT+"_sections (id_"+typeC+", id_section) "
                         + "SELECT utilisateurs.id_utilisateur, sections.id_section "
                         + "FROM utilisateurs, sections "
@@ -84,11 +92,12 @@ public class UserAdd {
                         + "AND utilisateurs.prenom = '"+prenom+"' "
                         + "AND utilisateurs.mot_de_passe = '"+mdp+"' "
                         + "AND sections.id_section = "+section+"";
+                
                 this.db.edit(request);
             }
         }   
     }
-    private boolean alreadyInDb(String nom, String prenom, String mdp){
+    private boolean alreadyInDb(String nom, String prenom, String mdp) {
         
         String request = "SELECT id_utilisateur FROM utilisateurs "
                         + "WHERE nom = '"+nom+"' "
@@ -106,6 +115,4 @@ public class UserAdd {
         }
         return false;
     }
-    
 }
-

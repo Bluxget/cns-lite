@@ -15,10 +15,11 @@ import javax.swing.JOptionPane;
  */
 public class MainGui extends javax.swing.JFrame {
 
+    private UserList usrList = new UserList();
+    
     /**
      * Creates new form MainGui
      */
-    UserList usrList = new UserList();
     public MainGui() {
         initComponents();
     }
@@ -262,165 +263,229 @@ public class MainGui extends javax.swing.JFrame {
     }//GEN-LAST:event_ajoutUtilisateurActionPerformed
 
     private void modifUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifUserActionPerformed
-        //System.out.println(this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
         
-        switch (this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()))
+        switch(this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()))
         {
             case"apprentis":
-                if(this.appTable.getSelectedRow() != -1){
+                if(this.appTable.getSelectedRow() != -1)
+                {
                     this.userUpdate(
-                    this.usrList.getUserId(
-                        (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),0), 
-                        (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),1)),
-                    this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                        this.usrList.getUserId(
+                            (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),0), 
+                            (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),1)
+                        ),
+                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex())
+                    );
                 }
-                else{
+                else 
+                {
                     this.tableSelectionError();
                 }
-                break;
+            break;
             case"formateurs":
-                if(this.formTable.getSelectedRow() != -1){
+                if(this.formTable.getSelectedRow() != -1)
+                {
                     this.userUpdate(
                         this.usrList.getUserId(
                             (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),0), 
-                            (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)),
-                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                            (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)
+                        ),
+                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex())
+                    );
                 }
-                else{
+                else 
+                {
                     this.tableSelectionError();
                 }
-                break;
+            break;
             case"responsables":
-            if(this.respTable.getSelectedRow() != -1){
+                if(this.respTable.getSelectedRow() != -1)
+                {
                     this.userUpdate(
                         this.usrList.getUserId(
                             (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),0), 
-                            (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)),
-                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                            (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)
+                        ),
+                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex())
+                    );
                 }
-                else{
+                else 
+                {
                     this.tableSelectionError();
                 }
-                break;
+            break;
             case"tuteurs":
-            if(this.tuTable.getSelectedRow() != -1){
+                if(this.tuTable.getSelectedRow() != -1) 
+                {
                     this.userUpdate(
                         this.usrList.getUserId(
                             (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),0), 
-                            (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)),
-                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()));
+                            (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)
+                        ),
+                        this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex())
+                    );
                 }
-                else{
+                else 
+                {
                     this.tableSelectionError();
                 }
-                break;
+            break;
             default:
+            break;
         }
     }//GEN-LAST:event_modifUserActionPerformed
 
     private void supprUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprUserActionPerformed
         
-        
-        
-        switch (this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()))
+        switch(this.jTabbedPane1.getTitleAt(this.jTabbedPane1.getSelectedIndex()))
         {
             case"apprentis":
-                if(this.appTable.getSelectedRow()!= -1){
-                    if(this.userDelConfirm()){
+                if(this.appTable.getSelectedRow()!= -1)
+                {
+                    if(this.userDelConfirm())
+                    {
                         try {
-                            this.userDelete(this.usrList.getUserId(
-                                (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),0), 
-                                (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),1)), "apprenti");
-                            } 
-                        catch (Throwable ex) {
-                                Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        JOptionPane.showMessageDialog(this.supprUser,
-                            "Apprenti supprimé avec succès");
+                            this.userDelete(
+                                this.usrList.getUserId(
+                                    (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),0), 
+                                    (String)this.appTable.getValueAt(this.appTable.getSelectedRow(),1)
+                                ),
+                                "apprenti"
+                            );
+                        } 
+                        catch(Throwable ex) 
+                        {
+                            Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(this.supprUser, "Apprenti supprimé avec succès");
                     }
                 }
-                else{this.tableSelectionError();}
-                break;
-
+                else 
+                {
+                    this.tableSelectionError();
+                }
+            break;
             case"formateurs":
-                if(this.formTable.getSelectedRow()!= -1){
-                    if(this.userDelConfirm()){
-                        try {
-                            this.userDelete(this.usrList.getUserId(
-                                (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),0), 
-                                (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)), "formateur");
-                            } 
-                        catch (Throwable ex) {
-                                Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        JOptionPane.showMessageDialog(this.supprUser,
-                            "Formateur Supprimé avec succès");
+                if(this.formTable.getSelectedRow()!= -1)
+                {
+                    if(this.userDelConfirm())
+                    {
+                        try 
+                        {
+                            this.userDelete(
+                                this.usrList.getUserId(
+                                    (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),0), 
+                                    (String)this.formTable.getValueAt(this.formTable.getSelectedRow(),1)
+                                ), 
+                                "formateur"
+                            );
+                        } 
+                        catch(Throwable ex) 
+                        {
+                            Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(this.supprUser, "Formateur Supprimé avec succès");
                     }
                 }
-                else{this.tableSelectionError();}
-                break;
+                else 
+                {
+                    this.tableSelectionError();
+                }
+            break;
             case"responsables":
-                if(this.respTable.getSelectedRow()!= -1){
-                    if(this.userDelConfirm()){
-                        try {
-                            this.userDelete(this.usrList.getUserId(
-                                (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),0), 
-                                (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)), "responsable");
-                            } 
-                        catch (Throwable ex) {
-                                Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        JOptionPane.showMessageDialog(this.supprUser,
-                            "Responsable Supprimé avec succès");
+                if(this.respTable.getSelectedRow()!= -1)
+                {
+                    if(this.userDelConfirm())
+                    {
+                        try 
+                        {
+                            this.userDelete(
+                                this.usrList.getUserId(
+                                    (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),0), 
+                                    (String)this.respTable.getValueAt(this.respTable.getSelectedRow(),1)
+                                ), 
+                                "responsable"
+                            );
+                        } 
+                        catch(Throwable ex) 
+                        {
+                            Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(this.supprUser, "Responsable Supprimé avec succès");
                     }
                 }
-                else{this.tableSelectionError();}
-                break;
+                else 
+                {
+                    this.tableSelectionError();
+                }
+            break;
             case"tuteurs":
-                if(this.respTable.getSelectedRow()!= -1){
-                    if(this.userDelConfirm()){
-                        try {
-                            this.userDelete(this.usrList.getUserId(
-                                (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),0), 
-                                (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)), "tuteur");
-                            } 
-                        catch (Throwable ex) {
-                                Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        JOptionPane.showMessageDialog(this.supprUser,
-                            "Tuteur Supprimé avec succès");
+                if(this.respTable.getSelectedRow()!= -1)
+                {
+                    if(this.userDelConfirm())
+                    {
+                        try 
+                        {
+                            this.userDelete(
+                                this.usrList.getUserId(
+                                    (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),0), 
+                                    (String)this.tuTable.getValueAt(this.tuTable.getSelectedRow(),1)
+                                ), 
+                                "tuteur"
+                            );
+                        } 
+                        catch(Throwable ex) 
+                        {
+                            Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        JOptionPane.showMessageDialog(this.supprUser, "Tuteur Supprimé avec succès");
                     }
                 }
-                else{this.tableSelectionError();}
-                break;
+                else 
+                {
+                    this.tableSelectionError();
+                }
+            break;
             default:
+            break;
         }
-
     }//GEN-LAST:event_supprUserActionPerformed
+    
     public boolean userDelConfirm(){
         JOptionPane delConfirmationPane = new JOptionPane();
         int choix = delConfirmationPane.showConfirmDialog(this, "Voulez-vous Supprimer l'utilisateur sélectionné ?", "Confirmation suppression", JOptionPane.YES_NO_OPTION);
         // choix = 0 pour 'oui' et choix = 1 pour 'non'
-        if(choix == 0){return true;}
-        else{return false;}
+        if(choix == 0)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
+    
     public void userUpdate(int id, String userType){
         GuiUserUpdate guiUserUpdate = new GuiUserUpdate(id, userType);
         guiUserUpdate.execute();
         
         this.reloadTable();
     }
+    
     public void userDelete(int id, String userType) throws Throwable{
         UserDelete userDelete = new UserDelete(id, userType);
         userDelete.confirm();
         
         this.reloadTable();
     }
+    
     public void tableSelectionError(){
-        JOptionPane.showMessageDialog(this,
-                        "veuillez sélectionner UN utilisateur",
-                        "SELECTION INVALIDE",
-                        JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(
+            this,
+            "veuillez sélectionner UN utilisateur",
+            "SELECTION INVALIDE",
+            JOptionPane.ERROR_MESSAGE
+        );
     }
     
     @Override

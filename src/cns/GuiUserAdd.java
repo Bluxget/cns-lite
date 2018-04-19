@@ -33,7 +33,7 @@ public class GuiUserAdd extends javax.swing.JDialog {
             public void windowClosing(WindowEvent e) {
                 Cns.MainGui.setVisible(true);
             }
-          });
+        });
          
         initComponents();
     }
@@ -215,133 +215,140 @@ public class GuiUserAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_userPrenomActionPerformed
 
     private void validerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerActionPerformed
-        if(!this.userNom.getText().equals("")&&!this.userPrenom.getText().equals("")&&!this.userMdp.getText().equals("")){
+        if(!this.userNom.getText().equals("") && !this.userPrenom.getText().equals("") && !this.userMdp.getText().equals("")) 
+        {
             switch (typeUser.getSelectedItem())
             {
                 case "apprenti":
-                    
-                    if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty()){
-                        
+                    if(!this.listeTuteurs.isSelectionEmpty()&&!this.sectionsList.isSelectionEmpty())
+                    {
                         String sectionSelected = (String) this.sectionsList.getSelectedValue();
                         String tuteurNp = (String) this.listeTuteurs.getSelectedValue();
                         String[] nomPrenom = tuteurNp.split(":");
-                        userAdd.apprenti(this.userNom.getText(), this.userPrenom.getText(), 
-                                         this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
-                                         this.userList.getUserId(nomPrenom[0],nomPrenom[1]));
+                        userAdd.apprenti(
+                            this.userNom.getText(), this.userPrenom.getText(), 
+                            this.userMdp.getText(), this.userList.getSectionId(sectionSelected), 
+                            this.userList.getUserId(nomPrenom[0],nomPrenom[1])
+                        );
                         
-                        JOptionPane.showMessageDialog(this.valider,
-                        "Apprenti ajouté avec succès");
+                        JOptionPane.showMessageDialog(this.valider, "Apprenti ajouté avec succès");
                         
                         this.userNom.setText("");
                         this.userPrenom.setText("");
                         this.userMdp.setText("");
                     }
-                    else{
-                        JOptionPane.showMessageDialog(this.valider,
-                        "veuillez sélectionner UN tuteur et UNE section",
-                        "SAISIE INVALIDE",
-                        JOptionPane.ERROR_MESSAGE);
+                    else
+                    {
+                        JOptionPane.showMessageDialog(
+                            this.valider,
+                            "veuillez sélectionner UN tuteur et UNE section",
+                            "SAISIE INVALIDE",
+                            JOptionPane.ERROR_MESSAGE
+                        );
 
                     }
-                    break;
-                    
+                break;
                 case "formateur":
-                    
-                    if(!this.sectionsList.isSelectionEmpty()){
-                        
+                    if(!this.sectionsList.isSelectionEmpty())
+                    {
                         ArrayList<Integer> listeIdSections = new ArrayList();
                         ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
                         
-                        for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
+                        for(String nomSection:listeNomSections)
+                        {
+                            listeIdSections.add(this.userList.getSectionId(nomSection));
+                        }
                         
-                        userAdd.formateur(this.userNom.getText(), this.userPrenom.getText(), 
-                                          this.userMdp.getText(),  listeIdSections);
+                        userAdd.formateur(this.userNom.getText(), this.userPrenom.getText(), this.userMdp.getText(), listeIdSections);
                         
-                        JOptionPane.showMessageDialog(this.valider,
-                        "Formateur ajouté avec succès");
+                        JOptionPane.showMessageDialog(this.valider, "Formateur ajouté avec succès");
                         
                         this.userNom.setText("");
                         this.userPrenom.setText("");
                         this.userMdp.setText("");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(
+                            this.valider,
+                            "veuillez sélectionner AU MOINS UNE Section",
+                            "SAISIE INVALIDE",
+                            JOptionPane.ERROR_MESSAGE
+                        );
                         
                     }
-                    
-                    else{
-                        
-                        JOptionPane.showMessageDialog(this.valider,
-                        "veuillez sélectionner AU MOINS UNE Section",
-                        "SAISIE INVALIDE",
-                        JOptionPane.ERROR_MESSAGE);
-                        
-                    }
-                    break;
-                    
+                break; 
                 case "responsable":
-                    
-                    if(!this.sectionsList.isSelectionEmpty()){
-                        
+                    if(!this.sectionsList.isSelectionEmpty())
+                    {
                         ArrayList<Integer> listeIdSections = new ArrayList();
                         ArrayList<String> listeNomSections = (ArrayList<String>) this.sectionsList.getSelectedValuesList();
                         
-                        for(String nomSection:listeNomSections){listeIdSections.add(this.userList.getSectionId(nomSection)); }
+                        for(String nomSection:listeNomSections) 
+                        {
+                            listeIdSections.add(this.userList.getSectionId(nomSection));
+                        }
                         
-                        userAdd.responsable(this.userNom.getText(), this.userPrenom.getText(), 
-                                          this.userMdp.getText(),  listeIdSections);
+                        userAdd.responsable(this.userNom.getText(), this.userPrenom.getText(), this.userMdp.getText(), listeIdSections);
                         
-                        JOptionPane.showMessageDialog(this.valider,
-                        "Responsable ajouté avec succès");
+                        JOptionPane.showMessageDialog(this.valider, "Responsable ajouté avec succès");
                         
                         this.userNom.setText("");
                         this.userPrenom.setText("");
                         this.userMdp.setText("");
                         
                     }
-                    
-                    else{
-                        
-                        JOptionPane.showMessageDialog(this.valider,
-                        "veuillez sélectionner AU MOINS UNE Section",
-                        "SAISIE INVALIDE",
-                        JOptionPane.ERROR_MESSAGE);
+                    else
+                    {
+                        JOptionPane.showMessageDialog(
+                            this.valider,
+                            "veuillez sélectionner AU MOINS UNE Section",
+                            "SAISIE INVALIDE",
+                            JOptionPane.ERROR_MESSAGE
+                        );
                         
                     }
-                    break;
-                    
+                break;
                 case "tuteur":
-
                     this.userAdd.tuteur(this.userNom.getText(), this.userPrenom.getText(), this.userMdp.getText());
-                    JOptionPane.showMessageDialog(this.valider,
-                    "Tuteur ajouté avec succès");
+                    
+                    JOptionPane.showMessageDialog(this.valider, "Tuteur ajouté avec succès");
+                    
                     this.userNom.setText("");
                     this.userPrenom.setText("");
                     this.userMdp.setText("");
-
-                    break;
-                    
+                break; 
                 default:
-                    
-                    JOptionPane.showMessageDialog(this.valider,
-                    "ERROR",
-                    "UNCATCHED ERROR",
-                    JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                        this.valider,
+                        "ERROR",
+                        "UNCATCHED ERROR",
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                break;
             }
         }
-        
-        else{
-            
-            JOptionPane.showMessageDialog(this.valider,
-            "veuillez renseigner les champs 'nom', 'prénom', et 'mot de passe'",
-            "SAISIE INVALIDE",
-            JOptionPane.ERROR_MESSAGE);
-            
+        else
+        {
+            JOptionPane.showMessageDialog(
+                this.valider,
+                "veuillez renseigner les champs 'nom', 'prénom', et 'mot de passe'",
+                "SAISIE INVALIDE",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }//GEN-LAST:event_validerActionPerformed
 
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
+        
         this.dispose();
-        try {
+       
+        try 
+        {
             this.finalize();
-        } catch (Throwable ex) {
+        } 
+        catch(Throwable ex) 
+        {
             Logger.getLogger(GuiUserAdd.class.getName()).log(Level.SEVERE, null, ex);
         }
         

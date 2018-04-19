@@ -24,6 +24,7 @@ public class GuiUserUpdate extends javax.swing.JFrame {
     private final UserUpdate userUpdate;
     
     public GuiUserUpdate(int idUser, String userType) {
+        
         this.userType = userType;
         this.idUser = idUser;
         this.userUpdate = new UserUpdate(idUser);
@@ -39,7 +40,6 @@ public class GuiUserUpdate extends javax.swing.JFrame {
           });
         
         initComponents();
-        
     }
 
     /**
