@@ -8,6 +8,8 @@ package cns;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -189,6 +191,17 @@ public class GuiUserUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_validerActionPerformed
 
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
+        this.dispose();
+       
+        try 
+        {
+            this.finalize();
+        } 
+        catch(Throwable ex) 
+        {
+            Logger.getLogger(GuiUserAdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         Cns.MainGui.setVisible(true);
     }//GEN-LAST:event_annulerActionPerformed
 
