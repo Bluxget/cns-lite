@@ -197,6 +197,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="userMdp">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="this.userMdp.setText(this.userList.getUserMdp(this.idUser));"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

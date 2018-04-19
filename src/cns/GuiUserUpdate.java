@@ -121,6 +121,8 @@ public class GuiUserUpdate extends javax.swing.JFrame {
         }
     });
 
+    this.userMdp.setText(this.userList.getUserMdp(this.idUser));
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
