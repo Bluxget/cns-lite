@@ -21,37 +21,37 @@ public class UserUpdate {
     public UserUpdate(int id){
         this.id = id;
     }
-    public void nom(String nvNom) throws SQLException{
+    public void nom(String nvNom){
         if(this.alreadyInDb()){
             this.utilisateursRequest("nom", nvNom);
         }
     }
-    public void prenom(String nvPrenom) throws SQLException{
+    public void prenom(String nvPrenom){
          if(this.alreadyInDb()){
         this.utilisateursRequest("prenom", nvPrenom);
          }
     }
-    public void mdp(String nvMdp) throws SQLException{
+    public void mdp(String nvMdp){
         if(this.alreadyInDb()){
         this.utilisateursRequest("mot_de_passe", nvMdp);
         }
     }
-    public void apprentiSection(int id_section) throws SQLException{
+    public void apprentiSection(int id_section){
         if(this.alreadyInDb()){
             this.apprentiRequest("id_section", id_section);
         }
     }
-    public void apprentiTuteur(int id_tuteur) throws SQLException{
+    public void apprentiTuteur(int id_tuteur){
         if(this.alreadyInDb()){
             this.apprentiRequest("id_tuteur", id_tuteur);
         }
     }
-    public void formateurSections(ArrayList<Integer> arraySections) throws SQLException{
+    public void formateurSections(ArrayList<Integer> arraySections){
         if(this.alreadyInDb()){
             this.sectionsRequest("formateurs", "formateur", arraySections);
         }
     }
-    public void responsableSections(ArrayList<Integer> arraySections) throws SQLException{
+    public void responsableSections(ArrayList<Integer> arraySections){
         if(this.alreadyInDb()){
             this.sectionsRequest("responsables", "responsable", arraySections);
         }
@@ -84,10 +84,10 @@ public class UserUpdate {
     }
     private void utilisateursRequest(String colonne, String param){
         String request = "UPDATE `utilisateurs` SET `"+colonne+"` = '"+param+"' "
-                        + "WHERE `apprentis`.`id_utilisateur` = "+this.id+"";
+                        + "WHERE `utilisateurs`.`id_utilisateur` = "+this.id+"";
         this.db.edit(request);
     }
-    private boolean alreadyInDb() throws SQLException{
+    private boolean alreadyInDb(){
         
         String request = "SELECT id_utilisateur FROM utilisateurs "
                        + "WHERE id_utilisateur = "+this.id+"";

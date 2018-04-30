@@ -189,7 +189,27 @@ public class GuiUserUpdate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void validerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerActionPerformed
-        // TODO add your handling code here:
+        //this.userNom;
+        //this.userPrenom;
+        //this.userMdp;
+        //this.userUpdate;
+        
+        this.userUpdate.nom(this.userNom.getText());
+        this.userUpdate.prenom(this.userPrenom.getText());
+        this.userUpdate.mdp(this.userMdp.getText());
+        
+        this.dispose();
+       
+        try 
+        {
+            this.finalize();
+        } 
+        catch(Throwable ex) 
+        {
+            Logger.getLogger(GuiUserAdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Cns.MainGui.setVisible(true);
     }//GEN-LAST:event_validerActionPerformed
 
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
